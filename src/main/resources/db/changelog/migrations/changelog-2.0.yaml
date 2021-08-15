@@ -1,0 +1,36 @@
+#Создание таблицы операций по счету клиента и описание к ней
+databaseChangeLog:
+  - changeSet:
+      id: 000000-create-table-operations
+      author: ${author}
+      changes:
+        - createTable:
+            tableName: operations
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: type, type: varchar(30)}
+              - column: {name: amount, type: decimal}
+              - column: {name: data, type: datetime}
+              - column: {name: description, type: varchar}
+              - column: {name: client_id, type: bigint, constraints: { nullable: false }}
+
+  - changeSet:
+      id: 000001-add-comments-operations
+      author: ${author}
+      changes:
+        - sql:
+            dbms: h2, postgresql
+            stripComments: true
+            sql: comment on table operations is 'Таблица хранения операций по счету клиента';
+
+  - changeSet:
+      id: 000002-add-foreign-key-operation_clients
+      author: ${author}
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: client_id
+            baseTableName: operations
+            constraintName: operations_clients
+            referencedColumnNames: id
+            referencedTableName: clients
+            validate: true
