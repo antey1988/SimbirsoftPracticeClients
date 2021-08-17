@@ -1,9 +1,9 @@
 package com.example.SimbirsoftPricticeClients.entities;
 
-import javax.persistence.*;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Column;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Embeddable
 public class BankAccount {

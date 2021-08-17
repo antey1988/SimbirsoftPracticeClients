@@ -4,26 +4,26 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 public class PaymentProjectRequestDto {
-    private UUID clientUuid;
+    private UUID uuid;
 
-    private String projectName;
+    private String name;
 
     private BigDecimal price;
 
-    public UUID getClientUuid() {
-        return clientUuid;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public void setClientUuid(UUID clientUuid) {
-        this.clientUuid = clientUuid;
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getName() {
+        return name;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public BigDecimal getPrice() {

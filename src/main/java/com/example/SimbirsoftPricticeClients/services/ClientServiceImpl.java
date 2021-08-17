@@ -74,7 +74,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     @Transactional
     public String payProject(PaymentProjectRequestDto history) {
-        UUID uuid = history.getClientUuid();
+        UUID uuid = history.getUuid();
         Client _client = clientRepository.findByUuid(uuid).orElseThrow(() -> new NotFoundException(String.format("Клиент с uuid = %d не найден", uuid)));
         BankAccount _bankAccount = _client.getBankAccount();
         BigDecimal balance = _bankAccount.getBalance();
@@ -88,7 +88,7 @@ public class ClientServiceImpl implements ClientService {
         _operation.setType(Operation.TypeOperation.MINUS);
         _operation.setAmount(_amount);
         _operation.setData(new Date());
-        _operation.setDescription(String.format(MINUS, history.getProjectName()));
+        _operation.setDescription(String.format(MINUS, history.getName()));
         _operation.setClient(_client);
         _operation = operationRepository.save(_operation);
 

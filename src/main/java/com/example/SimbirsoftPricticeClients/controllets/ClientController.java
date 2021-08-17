@@ -4,6 +4,7 @@ import com.example.SimbirsoftPricticeClients.dto.ClientRequestDto;
 import com.example.SimbirsoftPricticeClients.dto.ClientResponseDto;
 import com.example.SimbirsoftPricticeClients.dto.PaymentProjectRequestDto;
 import com.example.SimbirsoftPricticeClients.services.ClientService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class ClientController {
     @PostMapping(value = "/clients")
     public ResponseEntity<String> createClient(@RequestBody ClientRequestDto request) {
         String response = service.createClient(request);
-        return ResponseEntity.accepted().body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping(value = "/clients/openProject")
